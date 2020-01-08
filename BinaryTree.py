@@ -42,7 +42,21 @@ class BinarySearchTree:
             
     
     #should return node if it is in the tree.
-    #def lookup(value):
+    def lookup(self, value):
+
+        compNode = self.root
+        while compNode is not None:
+
+            if value == compNode.value:
+                print("found value")
+                return compNode
+            elif value > compNode.value:
+                compNode = compNode.right
+            elif value < compNode.value:
+                compNode = compNode.left
+
+        print("Value not found")
+
 
         
 
@@ -55,3 +69,5 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
+tree.lookup(15)
+tree.lookup(7)
