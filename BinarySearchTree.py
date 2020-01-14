@@ -57,9 +57,40 @@ class BinarySearchTree:
 
         print("Value not found")
 
+    
+    #def remove(self, value):
 
+
+    def breadth_first_search(self):    
+
+        currentNode = self.root
+        bfs_list = []
+        queue = []
+        queue.append(currentNode)
+        while len(queue) > 0:
+            currentNode = queue.pop(0)
+            print(currentNode.value)
+            bfs_list.append(currentNode.value)
+            if currentNode.left is not None:
+                queue.append(currentNode.left)
+            if currentNode.right is not None:
+                queue.append(currentNode.right)
+
+    def recursive_bfs(self, queue, myList):
+
+        if len(queue) is 0:
+            return myList
+
+        currentNode = queue.pop(0)
+        print(currentNode.value)
+        myList.append(currentNode.value)
+        if currentNode.left is not None:
+            queue.append(currentNode.left)
+        if currentNode.right is not None:
+            queue.append(currentNode.right)
+
+        return self.recursive_bfs(queue, myList)
         
-
 
 tree = BinarySearchTree()
 tree.insert(9)
@@ -69,7 +100,6 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
-tree.lookup(15)
-tree.lookup(7)
-tree.lookup(9)
-tree.lookup(170)
+
+#tree.breadth_first_search()
+print(tree.recursive_bfs([tree.root], []))
