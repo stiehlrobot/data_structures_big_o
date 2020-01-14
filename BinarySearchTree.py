@@ -78,7 +78,7 @@ class BinarySearchTree:
 
     def recursive_bfs(self, queue, myList):
 
-        if len(queue) is 0:
+        if len(queue) == 0:
             return myList
 
         currentNode = queue.pop(0)
@@ -92,6 +92,55 @@ class BinarySearchTree:
         return self.recursive_bfs(queue, myList)
         
 
+    def depth_first_search_inorder(self, root , myList):
+
+        
+        currentNode = root
+        if currentNode.left is not None:
+            self.depth_first_search_inorder(currentNode.left, myList)
+
+        myList.append(currentNode.value)
+
+        if currentNode.right is not None:
+            self.depth_first_search_inorder(currentNode.right, myList)
+
+        return myList
+
+    def depth_first_search_preorder(self, root, myList):
+
+        
+        currentNode = root
+        myList.append(currentNode.value)
+        
+
+        if currentNode.left is not None:
+            self.depth_first_search_preorder(currentNode.left, myList)
+            
+
+
+        if currentNode.right is not None:
+           
+            self.depth_first_search_preorder(currentNode.right, myList)
+            
+        return myList
+
+    def depth_first_search_postorder(self, root , myList):
+
+        
+        currentNode = root
+
+        if currentNode.left is not None:
+
+            self.depth_first_search_postorder(currentNode.left, myList)  
+
+        if currentNode.right is not None:
+           
+            self.depth_first_search_postorder(currentNode.right, myList)
+
+        myList.append(currentNode.value)
+
+        return myList
+
 tree = BinarySearchTree()
 tree.insert(9)
 tree.insert(4)
@@ -102,4 +151,8 @@ tree.insert(15)
 tree.insert(1)
 
 #tree.breadth_first_search()
-print(tree.recursive_bfs([tree.root], []))
+#print(tree.recursive_bfs([tree.root], []))
+
+print(tree.depth_first_search_inorder(tree.root, []))
+print(tree.depth_first_search_preorder(tree.root, []))
+print(tree.depth_first_search_postorder(tree.root, []))
